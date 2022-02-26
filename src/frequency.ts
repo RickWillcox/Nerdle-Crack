@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { AllAnswers } from './allAnswers';
 
 var noDupesAllAnswers: string[] = [];
@@ -281,11 +280,14 @@ var frequencyNoDupes: Object = {
     },
 };
 
+var noDupesArr: string[] = [];
+
 AllAnswers.forEach((answer) => {
     let splitAnswer = answer.split('');
     if ([...new Set(splitAnswer)].length === 8) {
         for (let i = 0; i < splitAnswer.length; i++) {
             frequencyNoDupes[i][splitAnswer[i]] += 1;
+            noDupesArr.push(answer);
         }
     }
     for (let i = 0; i < splitAnswer.length; i++) {
@@ -293,8 +295,178 @@ AllAnswers.forEach((answer) => {
     }
 });
 
-console.log('Frequency of each character in valid answers WITH DUPLICATES');
-console.table(frequencyWithDupes);
+// console.log('Frequency of each character in valid answers WITH DUPLICATES');
+// console.table(frequencyWithDupes);
 
-console.log('Frequency of each character in valid answers WITHOUT DUPLICATES');
-console.table(frequencyNoDupes);
+// console.log('Frequency of each character in valid answers WITHOUT DUPLICATES');
+// console.table(frequencyNoDupes);
+
+// console.log(noDupesArr);
+var betterEq: string[] = [];
+var betterEqObj: Object = {
+    0: {
+        '0': 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0,
+        '*': 0,
+        '/': 0,
+        '+': 0,
+        '-': 0,
+        '=': 0,
+    },
+    1: {
+        '0': 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0,
+        '*': 0,
+        '/': 0,
+        '+': 0,
+        '-': 0,
+        '=': 0,
+    },
+    2: {
+        '0': 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0,
+        '*': 0,
+        '/': 0,
+        '+': 0,
+        '-': 0,
+        '=': 0,
+    },
+    3: {
+        '0': 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0,
+        '*': 0,
+        '/': 0,
+        '+': 0,
+        '-': 0,
+        '=': 0,
+    },
+    4: {
+        '0': 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0,
+        '*': 0,
+        '/': 0,
+        '+': 0,
+        '-': 0,
+        '=': 0,
+    },
+    5: {
+        '0': 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0,
+        '*': 0,
+        '/': 0,
+        '+': 0,
+        '-': 0,
+        '=': 0,
+    },
+    6: {
+        '0': 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0,
+        '*': 0,
+        '/': 0,
+        '+': 0,
+        '-': 0,
+        '=': 0,
+    },
+    7: {
+        '0': 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0,
+        '*': 0,
+        '/': 0,
+        '+': 0,
+        '-': 0,
+        '=': 0,
+    },
+};
+
+AllAnswers.forEach((eq) => {
+    let split: string[] = eq.split('');
+    if ([...new Set(split)].length === 8) {
+        if (
+            split[5] === '=' &&
+            split[3] === '1' &&
+            split[0] === '4' &&
+            split[3] === '1' &&
+            split[6] === '2' &&
+            split[1] === '5' &&
+            split[6] === '2' &&
+            split[4] === '6'
+        ) {
+            console.log(eq);
+            for (let i = 0; i < split.length; i++) {
+                betterEqObj[i][split[i]] += 1;
+            }
+        }
+    }
+});
+
+console.log(
+    'Frequency of each character in valid answers Working to best equation'
+);
+console.table(betterEqObj);
+console.log('raw', AllAnswers.length);
+console.log('no dupes', noDupesArr.length);
+console.log('better eq', betterEq.length);
