@@ -247,3 +247,13 @@ Character: 0 | Index: 7 | Solutions left with this character: 1
 Best Answer Based Always choosing the highest probabilty of greens:  14+76=90
 
 ```
+
+
+## Nerdle Games using 14+76=90
+```
+nerdlegame 39 3/6
+
+⬛🟪⬛⬛⬛🟩🟪⬛
+🟩🟩🟩🟩⬛🟩🟩⬛
+🟩🟩🟩🟩🟩🟩🟩🟩 
+```
