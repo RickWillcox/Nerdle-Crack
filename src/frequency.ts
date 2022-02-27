@@ -190,7 +190,6 @@ function removeDuplicates(arr: string[]): string[] {
         let y = [...new Set(x.split(''))];
         if (y.length === 8) z.push(x);
     });
-    // console.log(z);
     return z;
 }
 
