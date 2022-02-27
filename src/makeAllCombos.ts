@@ -16,6 +16,10 @@ function oneTwoThree(): string[] {
     // Possible combinations
     // x OP xx = xxx - solution 1
     // xx OP x = xxx - solution 2
+    // xxx OP x = xx - solution 3
+    // x OP xxx = xx - solution 4
+    // xxx OP xx = x - solution 5
+    // xx OP xxx = x - solution 6
     var validCombos: string[] = [];
     let count = 0;
 
@@ -26,11 +30,27 @@ function oneTwoThree(): string[] {
                     operators.forEach((op) => {
                         // check all solution 1 / 1 2 3
                         if (evaluate(`${x}${op}${xx}`) === xxx) {
-                            validCombos.push(`${x}${op}${xx}=${xxx}`);
+                            validCombos.push(`"${x}${op}${xx}=${xxx}",`);
                         }
                         // check all solution 2 / 2 1 3
                         if (evaluate(`${xx}${op}${x}`) === xxx) {
-                            validCombos.push(`${xx}${op}${x}=${xxx}`);
+                            validCombos.push(`"${xx}${op}${x}=${xxx}",`);
+                        }
+                        // xxx OP x = xx - solution 3 / 3 1 2
+                        if (evaluate(`${xxx}${op}${x}`) === xx) {
+                            validCombos.push(`"${xxx}${op}${x}=${xx}",`);
+                        }
+                        // x OP xxx = xx - solution 4 / 1 3 2
+                        if (evaluate(`${x}${op}${xxx}`) === xx) {
+                            validCombos.push(`"${x}${op}${xxx}=${xx}",`);
+                        }
+                        // xxx OP xx = x - solution 5 / 3 2 1
+                        if (evaluate(`${xxx}${op}${xx}`) === x) {
+                            validCombos.push(`"${xxx}${op}${xx}=${x}",`);
+                        }
+                        // xx OP xxx = x - solution 6 / 2 3 1
+                        if (evaluate(`${xx}${op}${xxx}`) === x) {
+                            validCombos.push(`"${xx}${op}${xxx}=${x}",`);
                         }
                         count += 1;
                     });
@@ -54,7 +74,7 @@ function twoTwoTwo(): string[] {
                 operators.forEach((op) => {
                     // check all solution 1 / 2 2 2
                     if (evaluate(`${xx1}${op}${xx2}`) === xx3) {
-                        validCombos.push(`${xx1}${op}${xx2}=${xx3}`);
+                        validCombos.push(`"${xx1}${op}${xx2}=${xx3}",`);
                     }
                     count += 1;
                 });
@@ -81,19 +101,27 @@ function oneOneOneTwo(): string[] {
                     operators.forEach((op) => {
                         // solution 1
                         if (evaluate(`${x1}${op}${x2}${op}${x3}`) === xx) {
-                            validCombos.push(`${x1}${op}${x2}${op}${x3}=${xx}`);
+                            validCombos.push(
+                                `"${x1}${op}${x2}${op}${x3}=${xx}",`
+                            );
                         }
                         // solution 2
                         if (evaluate(`${x1}${op}${x2}${op}${xx}`) === x3) {
-                            validCombos.push(`${x1}${op}${x2}${op}${xx}=${x1}`);
+                            validCombos.push(
+                                `"${x1}${op}${x2}${op}${xx}=${x1}",`
+                            );
                         }
                         // solution 3
                         if (evaluate(`${x1}${op}${xx}${op}${x3}`) === x2) {
-                            validCombos.push(`${x1}${op}${xx}${op}${x3}=${x2}`);
+                            validCombos.push(
+                                `"${x1}${op}${xx}${op}${x3}=${x2}",`
+                            );
                         }
                         // solution 4
                         if (evaluate(`${xx}${op}${x2}${op}${x3}`) === x1) {
-                            validCombos.push(`${xx}${op}${x2}${op}${x3}=${x1}`);
+                            validCombos.push(
+                                `"${xx}${op}${x2}${op}${x3}=${x1}",`
+                            );
                         }
                         count += 1;
                     });
