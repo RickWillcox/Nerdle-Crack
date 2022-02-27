@@ -154,7 +154,6 @@ function getLargestNumber(ft: Object, subArr: string[]) {
             }
         }
     }
-    console.log(largestNumber);
     answer[largestNumber[0]] = largestNumber[2]; //set the answer index to the character
 }
 
@@ -173,14 +172,16 @@ function removeAnswersUsed(arr: string[], ans: string[]): string[] {
     return arr.filter((item) => {
         var split = item.split('');
         var notInAnswer = false;
-        var notFound = true;
-        split.forEach((x) => {
-            if (ans.includes(x)) {
-                console.log(x, ans.includes(x));
-                notFound = false;
+        var found = true;
+        for (let i = 0; i < split.length; i++) {
+            if (ans[i] == ' ') {
+                continue;
             }
-        });
-        return notFound;
+            if (ans[i] != split[i]) {
+                found = false;
+            }
+        }
+        return found;
     });
 }
 
@@ -193,12 +194,24 @@ function removeDuplicates(arr: string[]): string[] {
     return z;
 }
 
+function getBestAnswer(answerArr: string[], ft?: Object) {
+    if (count >= 8) {
+        return;
+    }
+    answerArr = removeAnswersUsed(answerArr, answer);
+    ft = makeFrequencyTable(answerArr);
+    getLargestNumber(ft, answerArr);
+    count += 1;
+    getBestAnswer(answerArr, ft);
+}
+
+var count = 0;
 var answer: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 var answersNodupes: string[] = removeDuplicates(AllAnswers);
 
-let ft = makeFrequencyTable(answersNodupes);
-console.table(ft);
-getLargestNumber(ft, answersNodupes);
-console.log(answer);
+// while ([...new Set(answer)].length !== 8) {
+//     // getBestAnswer(answersNodupes, frequencyTable);
+// }
 
-while ([...new Set(answer)].length !== 8) {}
+getBestAnswer(answersNodupes, frequencyTable);
+console.log(answer);
