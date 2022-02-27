@@ -171,7 +171,3 @@ writeStream.on('error', (err) => {
 
 // close the stream
 writeStream.end();
-
-// console.log(oneTwoThreeArr.length); //12960000 iterations
-// console.log(twoTwoTwoArr.length); // 2916000 iterations
-// console.log(oneOneOneTwoArr.length); // 26244 iterations
