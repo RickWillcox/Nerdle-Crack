@@ -155,10 +155,11 @@ function getLargestNumber(ft: Object, subArr: string[]) {
         }
     }
     answer[largestNumber[0]] = largestNumber[2]; //set the answer index to the character
+    return largestNumber;
 }
 
 function makeFrequencyTable(arr: string[]): Object {
-    let ft = { ...frequencyTable };
+    let ft = JSON.parse(JSON.stringify(frequencyTable));
     arr.forEach((answer) => {
         let splitAnswer = answer.split('');
         for (let i = 0; i < splitAnswer.length; i++) {
@@ -185,6 +186,18 @@ function removeAnswersUsed(arr: string[], ans: string[]): string[] {
     });
 }
 
+function createStringFromArray(arr: string[]): string {
+    let rtnString: string = [];
+    for (let char of arr) {
+        if (char === ' ') {
+            rtnString += '□';
+        } else {
+            rtnString += char;
+        }
+    }
+    return rtnString;
+}
+
 function removeDuplicates(arr: string[]): string[] {
     const z: string[] = [];
     arr.forEach((x) => {
@@ -199,19 +212,31 @@ function getBestAnswer(answerArr: string[], ft?: Object) {
         return;
     }
     answerArr = removeAnswersUsed(answerArr, answer);
+
     ft = makeFrequencyTable(answerArr);
-    getLargestNumber(ft, answerArr);
+    let largestNum = getLargestNumber(ft, answerArr);
+
+    console.log(' ');
+    console.table(ft);
+    console.log('Possible Answers Left: ', count, answerArr.length);
+    console.log(
+        `Character: ${largestNum[2]} | Index: ${largestNum[0]} | Solutions left with this character: ${largestNum[1]}`
+    );
+    console.log('Current answer: ', createStringFromArray(answer));
+    console.log('------------------');
+
     count += 1;
     getBestAnswer(answerArr, ft);
 }
 
 var count = 0;
 var answer: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
-var answersNodupes: string[] = removeDuplicates(AllAnswers);
+var answersNoDupes: string[] = removeDuplicates(AllAnswers);
 
-// while ([...new Set(answer)].length !== 8) {
-//     // getBestAnswer(answersNodupes, frequencyTable);
-// }
-
-getBestAnswer(answersNodupes, frequencyTable);
-console.log(answer);
+console.log('Total possible Nerdle Answers: ', AllAnswers.length);
+console.log(
+    'Total possible Nerdle Answers with no duplicate characters: ',
+    answersNoDupes.length
+);
+console.log('Current answer: ', createStringFromArray(answer));
+getBestAnswer(answersNoDupes, frequencyTable);
