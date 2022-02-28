@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "combo": "node dist/makeAllCombos.js",
-    "freq": "node dist/frequency.js"
+    "freq": "node dist/frequency.js",
+    "diff" : "node dist/makeDiff.js"
   },
   "author": "Rick",
   "license": "ISC",

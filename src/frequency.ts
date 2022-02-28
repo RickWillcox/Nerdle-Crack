@@ -1,4 +1,6 @@
 import { AllAnswers } from './allAnswers';
+import { NewAnswers } from './newAnswers';
+import { FinalAnswers } from './FinalAnswers';
 
 var frequencyTable: Object = {
     0: {
@@ -231,12 +233,12 @@ function getBestAnswer(answerArr: string[], ft?: Object) {
 
 var count = 0;
 var answer: string[] = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
-var answersNoDupes: string[] = removeDuplicates(AllAnswers);
+var answersNoDupes: string[] = removeDuplicates(FinalAnswers);
 
-console.log('Total possible Nerdle Answers: ', AllAnswers.length);
-console.log(
-    'Total possible Nerdle Answers with no duplicate characters: ',
-    answersNoDupes.length
-);
+console.log('Total possible Nerdle Answers: ', FinalAnswers.length);
+// console.log(
+//     'Total possible Nerdle Answers with no duplicate characters: ',
+//     answersNoDupes.length
+// );
 console.log('Current answer: ', createStringFromArray(answer));
-getBestAnswer(answersNoDupes, frequencyTable);
+getBestAnswer(FinalAnswers, frequencyTable);
